@@ -15,6 +15,7 @@ class Employee extends Component
     public $alamat;
     public $updateData = false;
     public $employee_id;
+    public $katakunci;
 
     public function store(){
 
@@ -99,7 +100,12 @@ class Employee extends Component
 
     public function render()
     {
-        $data = ModelsEmployee::orderBy('nama', 'asc')->paginate(2);
+      if($this->katakunci != null)
+      {
+         $data = ModelsEmployee::where('nama', 'like','%'.$this->katakunci .'%' )->orWhere('alamat', 'like', '%'. $this->katakunci .'%')->orderBy('nama', 'asc')->paginate(2);
+      }else{
+         $data = ModelsEmployee::orderBy('nama', 'asc')->paginate(2);
+      }
         return view('livewire.employee', ['dataEmployess' => $data ]);
     }
 }

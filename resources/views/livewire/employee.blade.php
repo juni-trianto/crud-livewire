@@ -56,6 +56,9 @@
         <!-- START DATA -->
         <h1>Data Pegawai</h1>
         <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <div class="pb-3 pt-3">
+                <input type="text" class="form-control mb-3 w-25" placeholder="Search... " wire:model.live="katakunci">
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -97,7 +100,7 @@
                     Yakin akan menghapus data ini!
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                    <button type="button" class="btn btn-secondary" wire:click="clear()" data-bs-dismiss="modal">Tidak</button>
                     <button type="button " wire:click="delete()" class="btn btn-primary"  data-bs-dismiss="modal">Ya</button>
                     </div>
                 </div>
