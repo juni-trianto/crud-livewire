@@ -59,9 +59,15 @@
             <div class="pb-3 pt-3">
                 <input type="text" class="form-control mb-3 w-25" placeholder="Search... " wire:model.live="katakunci">
             </div>
+            @if (count($employee__selected_id))
+            <a wire:click="delete_confirmation('')" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger btn-sm">
+                Del {{ count($employee__selected_id)}} Data
+            </a>
+            @endif
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th></th>
                         <th class="col-md-1">No</th>
                         <th class="col-md-4">Nama</th>
                         <th class="col-md-3">Email</th>
@@ -72,6 +78,7 @@
                 <tbody>
                     @foreach($dataEmployess as $key => $value )
                     <tr>
+                        <td><input type="checkbox" wire:key="{{$value->id}}" value="{{$value->id}}" wire:model.live="employee__selected_id"></td>
                         <td>{{ $dataEmployess->firstItem() + $key  }}</td>
                         <td>{{ $value->nama }}</td>
                         <td>{{ $value->email }}</td>
